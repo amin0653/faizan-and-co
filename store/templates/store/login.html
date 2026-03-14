@@ -1,0 +1,59 @@
+{% extends 'store/base.html' %}
+
+{% block content %}
+    <!-- Security Notice -->
+    <div style="max-width: 400px; margin: 50px auto; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
+        
+        <div style="text-align: center; margin-bottom: 20px;">
+            <i class="fas fa-shield-alt" style="font-size: 50px; color: #2ecc71;"></i>
+            <h2 style="color: #333; margin-top: 10px;">Secure Admin Login</h2>
+        </div>
+
+        {% if error %}
+            <div style="background: #ffebee; color: #c62828; padding: 12px; border-radius: 5px; margin-bottom: 20px; border-left: 4px solid #c62828;">
+                <i class="fas fa-exclamation-triangle"></i> {{ error }}
+            </div>
+        {% endif %}
+
+        <!-- Security Tips -->
+        <div style="background: #e3f2fd; padding: 15px; border-radius: 5px; margin-bottom: 20px; font-size: 13px; color: #1565c0;">
+            <i class="fas fa-info-circle"></i> <strong>Security Tips:</strong>
+            <ul style="margin: 10px 0 0 20px; padding: 0;">
+                <li>Never share your password</li>
+                <li>Use strong password (8+ characters)</li>
+                <li>Logout after use</li>
+            </ul>
+        </div>
+
+        <form method="POST" autocomplete="off">
+            {% csrf_token %}
+            
+            <div style="margin-bottom: 20px;">
+                <label style="font-weight: bold; color: #555;">
+                    <i class="fas fa-user"></i> Username:
+                </label>
+                <input type="text" name="username" required 
+                       style="width: 100%; padding: 12px; margin-top: 8px; border: 2px solid #ddd; border-radius: 5px; font-size: 14px;"
+                       autocomplete="off">
+            </div>
+            
+            <div style="margin-bottom: 20px;">
+                <label style="font-weight: bold; color: #555;">
+                    <i class="fas fa-lock"></i> Password:
+                </label>
+                <input type="password" name="password" required 
+                       style="width: 100%; padding: 12px; margin-top: 8px; border: 2px solid #ddd; border-radius: 5px; font-size: 14px;"
+                       autocomplete="off">
+            </div>
+
+            <button type="submit" 
+                    style="width: 100%; padding: 15px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #fff; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; font-weight: bold;">
+                <i class="fas fa-sign-in-alt"></i> Secure Login
+            </button>
+        </form>
+
+        <div style="margin-top: 20px; text-align: center; font-size: 12px; color: #999;">
+            <i class="fas fa-lock"></i> 256-bit Encrypted Connection
+        </div>
+    </div>
+{% endblock %}

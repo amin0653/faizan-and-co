@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faizan and Co - My Selling Web</title>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Variables for Themes */
+        :root {
+            --bg-primary: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            --bg-secondary: #fff;
+            --text-primary: #2c3e50;
+            --text-secondary: #666;
+            --nav-bg: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            --nav-text: #fff;
+            --card-bg: #fff;
+            --card-shadow: rgba(0,0,0,0.1);
+            --header-bg: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            --footer-bg: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            --border-color: #e0e0e0;
+            --accent-color: #667eea;
+            --accent-hover: #764ba2;
+            --success-color: #27ae60;
+            --danger-color: #e74c3c;
+            --warning-color: #f39c12;
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            --bg-secondary: #2c3e50;
+            --text-primary: #ecf0f1;
+            --text-secondary: #bdc3c7;
+            --nav-bg: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            --nav-text: #fff;
+            --card-bg: #2c3e50;
+            --card-shadow: rgba(0,0,0,0.3);
+            --header-bg: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 100%);
+            --footer-bg: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 100%);
+            --border-color: #34495e;
+            --accent-color: #764ba2;
+            --accent-hover: #667eea;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background: var(--bg-primary);
+            min-height: 100vh;
+            transition: all 0.3s ease;
+            color: var(--text-primary);
+        }
+        
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        
+        /* Header Banner */
+        .header-banner {
+            background: var(--header-bg);
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        .header-banner h1 {
+            color: #ffd700;
+            font-size: 48px;
+            margin: 0;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        .header-banner p {
+            color: #fff;
+            margin: 10px 0 0 0;
+            font-size: 16px;
+            opacity: 0.8;
+        }
+        
+        /* Navigation */
+        .nav { 
+            background: var(--nav-bg); 
+            padding: 15px 30px; 
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .nav-left { display: flex; align-items: center; gap: 20px; }
+        .nav-left a {
+            color: var(--nav-text); 
+            text-decoration: none; 
+            font-weight: bold;
+            font-size: 18px;
+            padding: 8px 20px;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        .nav-left a:hover { color: #ffd700; background: rgba(255,255,255,0.1); }
+        
+        /* Search Bar */
+        .search-box {
+            display: flex;
+            align-items: center;
+            background: rgba(255,255,255,0.1);
+            border-radius: 25px;
+            padding: 5px 15px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .search-box input {
+            background: transparent;
+            border: none;
+            color: var(--nav-text);
+            padding: 8px 12px;
+            font-size: 14px;
+            outline: none;
+            width: 250px;
+        }
+        .search-box input::placeholder { color: rgba(255,255,255,0.6); }
+        .search-box button {
+            background: transparent;
+            border: none;
+            color: var(--nav-text);
+            cursor: pointer;
+            font-size: 16px;
+            padding: 5px;
+        }
+        .search-box button:hover { color: #ffd700; }
+        
+        .nav-right { display: flex; align-items: center; gap: 15px; }
+        .nav-right a {
+            color: var(--nav-text); 
+            text-decoration: none; 
+            font-weight: bold;
+            padding: 8px 20px;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        .nav-right a:hover { color: #ffd700; background: rgba(255,255,255,0.1); }
+        
+        /* Dark Mode Toggle */
+        .theme-toggle {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: var(--nav-text);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .theme-toggle:hover {
+            background: rgba(255,255,255,0.2);
+            transform: rotate(180deg);
+        }
+        
+        .logout-btn { background: var(--danger-color); padding: 8px 20px; border-radius: 5px; }
+        .logout-btn:hover { background: #c0392b; }
+        
+        /* Messages */
+        .message {
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            animation: slideIn 0.3s ease;
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .message.success { background: #d4edda; color: #155724; border-left: 4px solid #28a745; }
+        .message.error { background: #f8d7da; color: #721c24; border-left: 4px solid #dc3545; }
+        .message.warning { background: #fff3cd; color: #856404; border-left: 4px solid #ffc107; }
+        .message.info { background: #cce5ff; color: #004085; border-left: 4px solid #007bff; }
+        
+        /* Professional Footer */
+        .footer {
+            background: var(--footer-bg);
+            color: #fff;
+            padding: 40px 20px 20px 20px;
+            margin-top: 50px;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        .footer-section h3 {
+            color: #ffd700;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+        .footer-section p, .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            line-height: 1.8;
+        }
+        .footer-section a:hover { color: #ffd700; }
+        .social-icons { display: flex; gap: 15px; margin-top: 15px; }
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: #ffd700;
+            color: #1a1a2e;
+            border-radius: 50%;
+            font-size: 20px;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        .social-icons a:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+        }
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            color: #999;
+        }
+        .footer-bottom a { color: #ffd700; text-decoration: none; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav { flex-direction: column; padding: 15px; }
+            .nav-left, .nav-right { width: 100%; justify-content: center; }
+            .search-box input { width: 200px; }
+            .header-banner h1 { font-size: 32px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER BANNER -->
+    <div class="header-banner">
+        <h1><i class="fas fa-crown"></i> Faizan and Co</h1>
+        <p>Your Trusted Online Shopping Destination</p>
+    </div>
+    
+    <!-- Navigation - Home Left, Admin Right -->
+    <nav class="nav">
+        <div class="nav-left">
+            <a href="{% url 'index' %}"><i class="fas fa-home"></i> Home</a>
+            
+            <!-- Search Bar -->
+            <form action="{% url 'index' %}" method="GET" class="search-box">
+                <input type="text" name="q" placeholder="Search products..." value="{{ query }}">
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </form>
+        </div>
+        
+        <div class="nav-right">
+            <!-- Dark Mode Toggle -->
+            <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode">
+                <i class="fas fa-moon" id="theme-icon"></i>
+            </button>
+            
+            <a href="{% url 'contact' %}"><i class="fas fa-envelope"></i> Contact</a>
+            
+            {% if user.is_authenticated and user.is_staff %}
+                <a href="{% url 'change_password' %}"><i class="fas fa-lock"></i> Change Password</a>
+                <a href="{% url 'add_product' %}"><i class="fas fa-plus-circle"></i> Add Product</a>
+                <a href="{% url 'logout' %}" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            {% else %}
+                <a href="{% url 'login' %}"><i class="fas fa-user-lock"></i> Admin Login</a>
+            {% endif %}
+        </div>
+    </nav>
+    
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Django Messages -->
+        {% if messages %}
+            {% for message in messages %}
+                <div class="message {{ message.tags }}">
+                    {% if message.tags == 'success' %}<i class="fas fa-check-circle"></i>
+                    {% elif message.tags == 'error' %}<i class="fas fa-exclamation-circle"></i>
+                    {% elif message.tags == 'warning' %}<i class="fas fa-exclamation-triangle"></i>
+                    {% else %}<i class="fas fa-info-circle"></i>{% endif %}
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <!-- Page Content -->
+        {% block content %}{% endblock %}
+    </div>
+    
+    <!-- Professional Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <!-- About Section -->
+            <div class="footer-section">
+                <h3><i class="fas fa-store"></i> About Faizan and Co</h3>
+                <p>We provide the best products at competitive prices. Your satisfaction is our priority. Shop with confidence!</p>
+            </div>
+            
+            <!-- Quick Links -->
+            <div class="footer-section">
+                <h3><i class="fas fa-link"></i> Quick Links</h3>
+                <p><a href="{% url 'index' %}"><i class="fas fa-angle-right"></i> Home</a></p>
+                <p><a href="{% url 'contact' %}"><i class="fas fa-angle-right"></i> Contact Us</a></p>
+                {% if user.is_authenticated and user.is_staff %}
+                <p><a href="{% url 'add_product' %}"><i class="fas fa-angle-right"></i> Add Product</a></p>
+                <p><a href="{% url 'change_password' %}"><i class="fas fa-angle-right"></i> Change Password</a></p>
+                {% endif %}
+                <p><a href="#"><i class="fas fa-angle-right"></i> Privacy Policy</a></p>
+                <p><a href="#"><i class="fas fa-angle-right"></i> Terms & Conditions</a></p>
+            </div>
+            
+            <!-- Contact Section -->
+            <div class="footer-section">
+                <h3><i class="fas fa-address-card"></i> Contact Us</h3>
+                <p><i class="fas fa-envelope"></i> info@faizanandco.com</p>
+                <p><i class="fas fa-phone"></i> +92 XXX XXXXXXX</p>
+                <p><i class="fas fa-map-marker-alt"></i> Pakistan</p>
+                
+                <!-- Social Media Icons -->
+                <div class="social-icons">
+                    <a href="https://wa.me/92XXXXXXXXXX" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://facebook.com/yourpage" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://instagram.com/yourprofile" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://twitter.com/yourprofile" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 <a href="#">Faizan and Co</a>. All Rights Reserved. | Designed with <i class="fas fa-heart" style="color: #e74c3c;"></i> by Faizan</p>
+        </div>
+    </footer>
+
+    <!-- Dark Mode JavaScript -->
+    <script>
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', currentTheme);
+        updateThemeIcon(currentTheme);
+
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        }
+
+        function updateThemeIcon(theme) {
+            const icon = document.getElementById('theme-icon');
+            if (icon) {
+                icon.className = theme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
+            }
+        }
+    </script>
+</body>
+</html>

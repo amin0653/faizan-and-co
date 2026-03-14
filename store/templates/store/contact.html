@@ -1,0 +1,87 @@
+{% extends 'store/base.html' %}
+
+{% block content %}
+    <div style="max-width: 700px; margin: 50px auto; background: var(--card-bg); padding: 40px; border-radius: 12px; box-shadow: 0 5px 20px var(--card-shadow);">
+        <h2 style="text-align:center; color: var(--text-primary); margin-bottom: 10px; font-size: 32px;">
+            <i class="fas fa-envelope-open-text"></i> Contact Us
+        </h2>
+        <p style="text-align:center; color: var(--text-secondary); margin-bottom: 30px;">
+            Have a question? We'd love to hear from you!
+        </p>
+        
+        {% if success %}
+            <div style="background: #2ecc71; color: #fff; padding: 15px; border-radius: 8px; margin-bottom: 20px; text-align: center;">
+                <i class="fas fa-check-circle"></i> {{ success }}
+            </div>
+        {% endif %}
+        
+        <form method="POST">
+            {% csrf_token %}
+            
+            <div style="margin-bottom: 20px;">
+                <label style="font-weight: bold; color: var(--text-primary); display: block; margin-bottom: 8px;">
+                    <i class="fas fa-user"></i> Your Name *
+                </label>
+                <input type="text" name="name" required 
+                       style="width: 100%; padding: 12px 15px; border: 2px solid var(--border-color); border-radius: 8px; font-size: 15px; background: var(--bg-secondary); color: var(--text-primary); transition: all 0.3s;"
+                       placeholder="Enter your full name"
+                       onfocus="this.style.borderColor='#667eea'"
+                       onblur="this.style.borderColor='var(--border-color)'">
+            </div>
+            
+            <div style="margin-bottom: 20px;">
+                <label style="font-weight: bold; color: var(--text-primary); display: block; margin-bottom: 8px;">
+                    <i class="fas fa-envelope"></i> Email Address *
+                </label>
+                <input type="email" name="email" required 
+                       style="width: 100%; padding: 12px 15px; border: 2px solid var(--border-color); border-radius: 8px; font-size: 15px; background: var(--bg-secondary); color: var(--text-primary); transition: all 0.3s;"
+                       placeholder="your.email@example.com"
+                       onfocus="this.style.borderColor='#667eea'"
+                       onblur="this.style.borderColor='var(--border-color)'">
+            </div>
+            
+            <div style="margin-bottom: 20px;">
+                <label style="font-weight: bold; color: var(--text-primary); display: block; margin-bottom: 8px;">
+                    <i class="fas fa-tag"></i> Subject *
+                </label>
+                <input type="text" name="subject" required 
+                       style="width: 100%; padding: 12px 15px; border: 2px solid var(--border-color); border-radius: 8px; font-size: 15px; background: var(--bg-secondary); color: var(--text-primary); transition: all 0.3s;"
+                       placeholder="What is this about?"
+                       onfocus="this.style.borderColor='#667eea'"
+                       onblur="this.style.borderColor='var(--border-color)'">
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+                <label style="font-weight: bold; color: var(--text-primary); display: block; margin-bottom: 8px;">
+                    <i class="fas fa-comment-dots"></i> Message *
+                </label>
+                <textarea name="message" rows="6" required 
+                            style="width: 100%; padding: 12px 15px; border: 2px solid var(--border-color); border-radius: 8px; font-size: 15px; background: var(--bg-secondary); color: var(--text-primary); resize: vertical; transition: all 0.3s;"
+                            placeholder="Write your message here..."
+                            onfocus="this.style.borderColor='#667eea'"
+                            onblur="this.style.borderColor='var(--border-color)'"></textarea>
+            </div>
+            
+            <button type="submit" 
+                    style="width: 100%; padding: 15px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #fff; border: none; border-radius: 8px; cursor: pointer; font-size: 18px; font-weight: bold; transition: all 0.3s;"
+                    onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 5px 15px rgba(102, 126, 234, 0.4)';"
+                    onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none';">
+                <i class="fas fa-paper-plane"></i> Send Message
+            </button>
+        </form>
+        
+        <div style="margin-top: 30px; padding-top: 30px; border-top: 2px solid var(--border-color); text-align: center;">
+            <p style="color: var(--text-secondary); margin-bottom: 15px;">
+                <strong>Or reach us directly:</strong>
+            </p>
+            <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                <a href="mailto:info@faizanandco.com" style="color: var(--text-primary); text-decoration: none; display: flex; align-items: center; gap: 8px;">
+                    <i class="fas fa-envelope" style="color: #e74c3c;"></i> info@faizanandco.com
+                </a>
+                <a href="tel:+92XXXXXXXXXX" style="color: var(--text-primary); text-decoration: none; display: flex; align-items: center; gap: 8px;">
+                    <i class="fas fa-phone" style="color: #2ecc71;"></i> +92 XXX XXXXXXX
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
