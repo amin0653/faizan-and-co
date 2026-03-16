@@ -6,8 +6,8 @@ class Product(models.Model):
     image_upload = models.ImageField(upload_to='products/', blank=True, null=True)
     description = models.TextField()
     price = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
-    original_link = models.URLField()
-    seller_email = models.EmailField()
+    original_link = models.URLField(blank=True, null=True)
+    seller_email = models.EmailField(blank=True, null=True)  # ✅ Optional
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -15,7 +15,6 @@ class Product(models.Model):
     
     @property
     def get_image(self):
-        """Returns uploaded image or URL image"""
         if self.image_upload:
             return self.image_upload.url
         elif self.image_url:
